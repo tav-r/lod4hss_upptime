@@ -3,8 +3,52 @@ owner: tav-r # Your GitHub organization or username, where this repository lives
 repo: lod4hss_upptime # The name of this repository
 
 sites:
+  # --- Main site (GitHub Pages) ---
   - name: LOD4HSS
     url: https://lod4hss.org
+  - name: www Redirect
+    url: https://www.lod4hss.org
+    # 301 -> https://lod4hss.org/ ; 30x counts as up by default
+
+  # --- Services on 134.158.33.207 ---
+  - name: Geovistory
+    url: https://geovistory.lod4hss.org
+  - name: Fuseki
+    url: https://fuseki.lod4hss.org
+  - name: Outline
+    url: https://outline.lod4hss.org
+  - name: GraphDB
+    url: https://graphdb.lod4hss.org
+    expectedStatusCodes:
+      - 403 # root is forbidden; service is reachable
+  - name: SPARQL GraphDB
+    url: https://sparql-gdb.lod4hss.org
+    expectedStatusCodes:
+      - 401 # auth-protected endpoint
+  - name: Open GraphDB
+    url: https://open-gdb.lod4hss.org
+    # 302 -> /admin/ ; 30x counts as up by default
+  - name: Design System
+    url: https://design-system.lod4hss.org
+    # NOTE: currently serves a certificate for CN=agenda.larhra.fr, so TLS
+    # verification fails. This will report DOWN until the vhost is fixed.
+    # Add `__dangerous__insecure: true` to skip verification instead.
+
+  # --- Project sites (GitHub Pages) ---
+  - name: Elites Suisses
+    url: https://elites-suisses.lod4hss.org
+  - name: OntoMe Docs
+    url: https://ontome-doc.lod4hss.org
+  - name: NEPOC
+    url: https://nepoc.lod4hss.org
+  - name: EOS
+    url: https://eos.lod4hss.org
+  - name: Humility
+    url: https://humility.lod4hss.org
+  - name: HISB
+    url: https://hisb.lod4hss.org
+  - name: Borders
+    url: https://borders.lod4hss.org
 
 status-website:
   # Add your custom domain name, or remove the `cname` line if you don't have a domain
@@ -13,7 +57,7 @@ status-website:
   logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
   name: LOD4HSS Status
   introTitle: "**LOD4HSS** uptime monitoring, powered entirely by GitHub."
-  introMessage: This is the status page for [lod4hss.org](https://lod4hss.org). It uses **real-time** data from this [GitHub repository](https://github.com/$OWNER/$REPO). No server required — just GitHub Actions, Issues, and Pages.
+  introMessage: Status page for the [lod4hss.org](https://lod4hss.org) sites and services. Uses **real-time** data from this [GitHub repository](https://github.com/$OWNER/$REPO). No server required — just GitHub Actions, Issues, and Pages.
   navbar:
     - title: Status
       href: /
