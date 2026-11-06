@@ -50,6 +50,16 @@ sites:
   - name: Borders
     url: https://borders.lod4hss.org
 
+# Secrets the workflows are allowed to see. Once this key exists it is
+# authoritative: anything not listed here is NOT passed through, so add to
+# this list when adding a notification provider. GH_PAT is resolved by the
+# workflows themselves and GH_APP_PRIVATE_KEY must be kept out of it, so
+# neither belongs here.
+secrets:
+  - NOTIFICATION_TELEGRAM
+  - NOTIFICATION_TELEGRAM_BOT_KEY
+  - NOTIFICATION_TELEGRAM_CHAT_ID
+
 status-website:
   # Base theme; the `css` block below restyles it with the lod4hss.org palette
   theme: light
