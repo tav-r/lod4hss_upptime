@@ -50,6 +50,25 @@ sites:
   - name: Borders
     url: https://borders.lod4hss.org
 
+  # --- Services on lod4hss1.dh.unibe.ch ---
+  # Each of these redirects to a login page, and all three return 200 there,
+  # so a status-code check alone would pass even if the wrong app (or a bare
+  # web-server default page) were served. The body assertions below pin each
+  # URL to its expected product. Markers are case-sensitive substrings, kept
+  # free of version numbers so an upgrade does not trip them.
+  - name: Mathesar
+    url: https://lod4hss1.dh.unibe.ch/
+    # 302 -> /auth/login/?next=/   title: "Mathesar - Login"
+    __dangerous__body_down_if_text_missing: Mathesar
+  - name: AllegroGraph
+    url: https://lod4hss1.dh.unibe.ch/agraph/
+    # 301 -> /agraph/webview       title: "AllegroGraph WebView"
+    __dangerous__body_down_if_text_missing: AllegroGraph
+  - name: pgAdmin
+    url: https://lod4hss1.dh.unibe.ch/pgadmin
+    # 301 -> /pgadmin/ -> /pgadmin/login?next=/pgadmin/   title: "pgAdmin 4"
+    __dangerous__body_down_if_text_missing: pgAdmin
+
 # Secrets the workflows are allowed to see. Once this key exists it is
 # authoritative: anything not listed here is NOT passed through, so add to
 # this list when adding a notification provider. GH_PAT is resolved by the
